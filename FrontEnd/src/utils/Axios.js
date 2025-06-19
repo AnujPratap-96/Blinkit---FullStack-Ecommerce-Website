@@ -1,8 +1,8 @@
 import axios from "axios";
-import SummaryApi  from "../common/SummaryApi";
+import SummaryApi ,{baseURL}  from "../common/SummaryApi";
 
 const Axios = axios.create({
-    baseURL : import.meta.env.VITE_BACKEND_URL,
+    baseURL : baseURL,
     withCredentials : true
 })
 

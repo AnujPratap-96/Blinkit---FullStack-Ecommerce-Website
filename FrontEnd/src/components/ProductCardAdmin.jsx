@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import EditProductAdmin from './EditProductAdmin'
-import CofirmBox from './CofirmBox'
+
 import { IoClose } from 'react-icons/io5'
 import SummaryApi from '../common/SummaryApi'
 import Axios from '../utils/Axios'

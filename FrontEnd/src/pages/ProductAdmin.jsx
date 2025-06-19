@@ -43,7 +43,7 @@ const ProductAdmin = () => {
 
     const interval = setTimeout(() => {
       if (flag  ) {
-        refetch();
+        refetch(page, 12, search);
         flag = false;
       }
     }, 300);
@@ -51,7 +51,7 @@ const ProductAdmin = () => {
     return () => {
       clearTimeout(interval);
     };
-  }, [search]);
+  }, [search , page]);
 
   return (
     <section className="">
