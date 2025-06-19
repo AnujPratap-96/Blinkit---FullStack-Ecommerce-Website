@@ -1,4 +1,4 @@
-export const baseURL = 'http://localhost:8080/'; // Replace with your actual base URL
+export const baseURL =import.meta.env.VITE_BACKEND_URL; // Replace with your actual base URL
 
 const SummaryApi = {
     register : {
