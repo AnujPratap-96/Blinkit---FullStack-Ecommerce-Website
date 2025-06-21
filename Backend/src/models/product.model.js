@@ -62,8 +62,11 @@ productSchema.index(
     description: "text",
   },
   {
-    name: 10,
-    description: 5,
+    weights: {
+      name: 10,
+      description: 5,
+    },
+    name: "TextIndex", // optional name for the index
   }
 );
 
