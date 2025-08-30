@@ -1,8 +1,5 @@
 import SibApiV3Sdk  from "sib-api-v3-sdk"
-
-
-
-const sendEmail = async (sendTo , subject, htmlContent) => {
+const sendEmail = async ({sendTo , subject, htmlContent}) => {
   try {
     const client = SibApiV3Sdk.ApiClient.instance;
     client.authentications['api-key'].apiKey = process.env.BREVO_API_KEY;
@@ -20,6 +17,7 @@ const sendEmail = async (sendTo , subject, htmlContent) => {
     };
 
     await emailApi.sendTransacEmail(emailPayload);
+    return true;
 
   } catch (error) {
     console.error("❌ Failed to send email:", error);

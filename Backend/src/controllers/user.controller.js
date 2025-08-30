@@ -44,7 +44,7 @@ export async function registerUserController(req, res) {
     const verifyEmail = await sendEmail({
       sendTo: email,
       subject: "Verify email from blinket",
-      html: verifyEmailTemplate({
+      htmlContent: verifyEmailTemplate({
         name: name,
         url: verifyEmailUrl,
       }),
@@ -101,7 +101,7 @@ export async function verifyEmailController(req, res) {
     return res.status(500).json({
       message: error.message || error,
       error: true,
-      success: true,
+      success: false,
     });
   }
 }
