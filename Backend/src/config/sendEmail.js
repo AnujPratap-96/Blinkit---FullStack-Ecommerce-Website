@@ -1,30 +1,32 @@
-import { Resend } from 'resend';
-import dotenv from 'dotenv'
-dotenv.config()
+import SibApiV3Sdk  from "sib-api-v3-sdk"
 
-if(!process.env.RESEND_API_KEY){
-    console.log("Provide RESEND_API_KEY in side the .env file")
-}
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
-const sendEmail = async({sendTo, subject, html })=>{
-    try {
-        const { data, error } = await resend.emails.send({
-            from: 'Blinket <onboarding@resend.dev>',
-            to: "officialthakur94@gmail.com",
-            subject: subject,
-            html: html,
-        });
+const sendEmail = async (sendTo , subject, htmlContent) => {
+  try {
+    const client = SibApiV3Sdk.ApiClient.instance;
+    client.authentications['api-key'].apiKey = process.env.BREVO_API_KEY;
 
-        if (error) {
-            return console.error({ error });
-        }
+    const emailApi = new SibApiV3Sdk.TransactionalEmailsApi();
 
-        return data
-    } catch (error) {
-        console.log(error)
-    }
-}
+    const emailPayload = {
+      to: [{ email: sendTo }],
+      sender: {
+        name: 'Blinkit',
+        email: 'officialthakur94@gmail.com',
+      },
+      subject: subject,
+      htmlContent: htmlContent,
+    };
 
-export default sendEmail
+    await emailApi.sendTransacEmail(emailPayload);
+
+  } catch (error) {
+    console.error("❌ Failed to send email:", error);
+    throw new Error("Email send failed.");
+  }
+};
+
+
+export default sendEmail;
+
